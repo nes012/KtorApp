@@ -1,9 +1,8 @@
 package anzhy.dizi.ktorapp.di
 
 import android.content.Context
-import androidx.room.Room
-import anzhy.dizi.ktorapp.data.local.AnimeDatabase
-import anzhy.dizi.ktorapp.util.Constants.ANIME_DATABASE
+import anzhy.dizi.ktorapp.data.pref.DataStoreOperationsImpl
+import anzhy.dizi.ktorapp.domain.repository.DataStoreOperations
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,16 +12,11 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object DatabaseModule {
-
+object RepositoryModule {
     @Provides
     @Singleton
-    fun provideDatabase(
-        @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
-        context,
-        AnimeDatabase::class.java,
-        ANIME_DATABASE
-    ).build()
+    fun provideDataStoreOperations(@ApplicationContext context: Context): DataStoreOperations {
+        return DataStoreOperationsImpl(context = context)
+    }
 
 }

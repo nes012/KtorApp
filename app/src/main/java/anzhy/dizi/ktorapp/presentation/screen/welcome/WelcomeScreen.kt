@@ -21,6 +21,7 @@ import androidx.navigation.NavHostController
 import anzhy.dizi.ktorapp.R
 import anzhy.dizi.ktorapp.domain.model.OnBoardingPage
 import anzhy.dizi.ktorapp.ui.theme.*
+import anzhy.dizi.ktorapp.util.Constants.LAST_ON_BOARDING_PAGE
 import anzhy.dizi.ktorapp.util.Constants.ON_BOARDING_PAGE_COUNT
 import com.google.accompanist.pager.*
 
@@ -122,7 +123,7 @@ fun FinishButton(
     ) {
         AnimatedVisibility(
             modifier = Modifier.fillMaxWidth(),
-            visible = pagerState.currentPage == 2
+            visible = pagerState.currentPage == LAST_ON_BOARDING_PAGE
         ) {
             Button(
                 onClick = onClick,
