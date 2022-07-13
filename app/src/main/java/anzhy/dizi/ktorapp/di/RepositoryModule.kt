@@ -1,8 +1,12 @@
 package anzhy.dizi.ktorapp.di
 
 import android.content.Context
-import anzhy.dizi.ktorapp.data.pref.DataStoreOperationsImpl
+import anzhy.dizi.ktorapp.data.repository.DataStoreOperationsImpl
+import anzhy.dizi.ktorapp.data.repository.Repository
 import anzhy.dizi.ktorapp.domain.repository.DataStoreOperations
+import anzhy.dizi.ktorapp.domain.use_cases.UseCases
+import anzhy.dizi.ktorapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
+import anzhy.dizi.ktorapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,6 +21,15 @@ object RepositoryModule {
     @Singleton
     fun provideDataStoreOperations(@ApplicationContext context: Context): DataStoreOperations {
         return DataStoreOperationsImpl(context = context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideUseCases(repository: Repository): UseCases {
+        return UseCases(
+            saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
+            readOnBoardingUseCase = ReadOnBoardingUseCase(repository)
+        )
     }
 
 }

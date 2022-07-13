@@ -1,4 +1,4 @@
-package anzhy.dizi.ktorapp.data.pref
+package anzhy.dizi.ktorapp.data.repository
 
 import android.content.Context
 import androidx.datastore.core.DataStore
