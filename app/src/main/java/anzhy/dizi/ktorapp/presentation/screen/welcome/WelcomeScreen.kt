@@ -17,9 +17,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import anzhy.dizi.ktorapp.R
 import anzhy.dizi.ktorapp.domain.model.OnBoardingPage
+import anzhy.dizi.ktorapp.navigation.Screen
+import anzhy.dizi.ktorapp.presentation.screen.home.HomeScreen
 import anzhy.dizi.ktorapp.ui.theme.*
 import anzhy.dizi.ktorapp.util.Constants.LAST_ON_BOARDING_PAGE
 import anzhy.dizi.ktorapp.util.Constants.ON_BOARDING_PAGE_COUNT
@@ -27,7 +30,11 @@ import com.google.accompanist.pager.*
 
 @ExperimentalPagerApi
 @Composable
-fun WelcomeScreen(navController: NavHostController) {
+fun WelcomeScreen(
+    navController: NavHostController,
+    // hiltViewModel() - will return an existing hiltViewModel. If not it will create new one scoped to the current nav graph
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -64,7 +71,10 @@ fun WelcomeScreen(navController: NavHostController) {
             modifier = Modifier.weight(1f),
             pagerState = pagerState
         ) {
-
+            //whenever we navigate away from welcome screen to our home screen we are going to pop off welcome screen to backstack
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            welcomeViewModel.saveOnBoardingState(completed = true)
         }
     }
 }
