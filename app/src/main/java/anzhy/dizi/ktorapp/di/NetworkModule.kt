@@ -1,6 +1,10 @@
 package anzhy.dizi.ktorapp.di
 
+import androidx.paging.ExperimentalPagingApi
+import anzhy.dizi.ktorapp.data.local.AnimeDatabase
 import anzhy.dizi.ktorapp.data.remote.AnimeApi
+import anzhy.dizi.ktorapp.data.repository.RemoteDataSource
+import anzhy.dizi.ktorapp.data.repository.RemoteDataSourceImpl
 import anzhy.dizi.ktorapp.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -15,6 +19,7 @@ import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
+@ExperimentalPagingApi
 @OptIn(ExperimentalSerializationApi::class)
 @Module
 @InstallIn(SingletonComponent::class)
@@ -49,6 +54,16 @@ object NetworkModule {
         return retrofit.create(AnimeApi::class.java)
     }
 
-
+    @Provides
+    @Singleton
+    fun providesRemoteDataSource(
+        animeApi: AnimeApi,
+        animeDatabase: AnimeDatabase
+    ): RemoteDataSource {
+        return RemoteDataSourceImpl(
+            animaApi = animeApi,
+            animeDatabase = animeDatabase
+        )
+    }
 
 }
