@@ -49,4 +49,6 @@ object NetworkModule {
         return retrofit.create(AnimeApi::class.java)
     }
 
+
+
 }

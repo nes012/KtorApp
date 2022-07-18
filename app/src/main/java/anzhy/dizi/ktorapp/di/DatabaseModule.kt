@@ -2,6 +2,7 @@ package anzhy.dizi.ktorapp.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
 import anzhy.dizi.ktorapp.data.local.AnimeDatabase
 import anzhy.dizi.ktorapp.util.Constants.ANIME_DATABASE
 import dagger.Module
@@ -19,10 +20,11 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
-        context,
-        AnimeDatabase::class.java,
-        ANIME_DATABASE
-    ).build()
-
+    ): RoomDatabase {
+        return Room.databaseBuilder(
+            context,
+            AnimeDatabase::class.java,
+            ANIME_DATABASE
+        ).build()
+    }
 }
