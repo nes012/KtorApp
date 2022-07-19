@@ -5,6 +5,7 @@ import anzhy.dizi.ktorapp.data.repository.DataStoreOperationsImpl
 import anzhy.dizi.ktorapp.data.repository.Repository
 import anzhy.dizi.ktorapp.domain.repository.DataStoreOperations
 import anzhy.dizi.ktorapp.domain.use_cases.UseCases
+import anzhy.dizi.ktorapp.domain.use_cases.get_all_heroes.GetAllHeroesUseCase
 import anzhy.dizi.ktorapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import anzhy.dizi.ktorapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import dagger.Module
@@ -28,7 +29,8 @@ object RepositoryModule {
     fun provideUseCases(repository: Repository): UseCases {
         return UseCases(
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
-            readOnBoardingUseCase = ReadOnBoardingUseCase(repository)
+            readOnBoardingUseCase = ReadOnBoardingUseCase(repository),
+            getAllHeroesUseCase = GetAllHeroesUseCase(repository)
         )
     }
 
