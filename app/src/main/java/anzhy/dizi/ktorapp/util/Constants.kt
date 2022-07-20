@@ -4,6 +4,7 @@ object Constants {
 
     //to access local host we need to write this address and not localhost
     const val BASE_URL = "http://10.0.2.2:8080"
+    //const val BASE_URL = "http://localhost:8080"
 
     const val DETAILS_ARGUMENT_KEY = "heroId"
 
