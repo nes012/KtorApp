@@ -33,8 +33,8 @@ object NetworkModule {
         return OkHttpClient.Builder()
             //http client will wait for 15 sec when will read from server. after those 15 sec, if we don't
             //receive a response from server then we are going to be able show message
-            .readTimeout(15, TimeUnit.MINUTES)
-            .connectTimeout(15, TimeUnit.MINUTES)
+            .readTimeout(15, TimeUnit.SECONDS)
+            .connectTimeout(15, TimeUnit.SECONDS)
             .build()
     }
 

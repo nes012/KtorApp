@@ -32,6 +32,8 @@ import anzhy.dizi.ktorapp.util.Constants.BASE_URL
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import androidx.paging.compose.items
+import anzhy.dizi.ktorapp.presentation.components.ShimmerEffect
+import anzhy.dizi.ktorapp.presentation.components.handlePagingResult
 import coil.annotation.ExperimentalCoilApi
 
 @ExperimentalCoilApi
@@ -40,22 +42,27 @@ fun ListContent(
     heroes: LazyPagingItems<Hero>,
     navController: NavHostController
 ) {
+    val result = handlePagingResult(heroes = heroes)
+
     Log.e("ListContent", heroes.loadState.toString())
-    LazyColumn(
-        contentPadding = PaddingValues(all = SMALL_PADDING),
-        verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
-    ) {
-        items(
-            items = heroes,
-            key = { hero ->
-                hero.id
-            }
-        ) { hero ->
-            hero?.let {
-                HeroItem(hero = it, navController = navController)
+    if (result) {
+        LazyColumn(
+            contentPadding = PaddingValues(all = SMALL_PADDING),
+            verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
+        ) {
+            items(
+                items = heroes,
+                key = { hero ->
+                    hero.id
+                }
+            ) { hero ->
+                hero?.let {
+                    HeroItem(hero = it, navController = navController)
+                }
             }
         }
     }
+
 }
 
 @ExperimentalCoilApi
