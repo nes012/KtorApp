@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @ExperimentalPagingApi
-@OptIn(ExperimentalSerializationApi::class)
+@ExperimentalSerializationApi
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
@@ -41,7 +41,7 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideRetrofitInstance(okHttpClient: OkHttpClient): Retrofit {
-        val contentType = ("application/json").toMediaType()
+        val contentType = "application/json".toMediaType()
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(okHttpClient)

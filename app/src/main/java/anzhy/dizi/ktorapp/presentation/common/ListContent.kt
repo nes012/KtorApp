@@ -1,7 +1,9 @@
 package anzhy.dizi.ktorapp.presentation.common
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
@@ -29,23 +31,39 @@ import anzhy.dizi.ktorapp.ui.theme.*
 import anzhy.dizi.ktorapp.util.Constants.BASE_URL
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
+import androidx.paging.compose.items
+import coil.annotation.ExperimentalCoilApi
 
+@ExperimentalCoilApi
 @Composable
 fun ListContent(
     heroes: LazyPagingItems<Hero>,
     navController: NavHostController
 ) {
-
+    Log.e("ListContent", heroes.loadState.toString())
+    LazyColumn(
+        contentPadding = PaddingValues(all = SMALL_PADDING),
+        verticalArrangement = Arrangement.spacedBy(SMALL_PADDING)
+    ) {
+        items(
+            items = heroes,
+            key = { hero ->
+                hero.id
+            }
+        ) { hero ->
+            hero?.let {
+                HeroItem(hero = it, navController = navController)
+            }
+        }
+    }
 }
 
+@ExperimentalCoilApi
 @Composable
 fun HeroItem(
     hero: Hero,
     navController: NavHostController
 ) {
-
-    //from library coil
-    val imageURL = "${BASE_URL}${hero.image}"
 
     Box(
         modifier = Modifier
@@ -59,7 +77,7 @@ fun HeroItem(
             AsyncImage(
                 modifier = Modifier.fillMaxSize(),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(data = imageURL)
+                    .data(data = "$BASE_URL${hero.image}")
                     .placeholder(drawableResId = R.drawable.placeholder)
                     .error(drawableResId = R.drawable.placeholder)
                     .build(),
@@ -119,6 +137,7 @@ fun HeroItem(
 
 }
 
+@ExperimentalCoilApi
 @Composable
 @Preview
 fun HeroItemPreview() {
