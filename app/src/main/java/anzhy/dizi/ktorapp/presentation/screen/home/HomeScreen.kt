@@ -1,18 +1,17 @@
 package anzhy.dizi.ktorapp.presentation.screen.home
 
-import androidx.compose.foundation.layout.padding
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
-import anzhy.dizi.ktorapp.presentation.components.RatingWidget
-import anzhy.dizi.ktorapp.ui.theme.LARGE_PADDING
-import com.google.accompanist.pager.ExperimentalPagerApi
+import anzhy.dizi.ktorapp.navigation.Screen
+import anzhy.dizi.ktorapp.presentation.common.ListContent
 
-@ExperimentalPagerApi
+
 @Composable
 fun HomeScreen(
+    navController: NavHostController,
     homeViewModel: HomeViewModel = hiltViewModel()
 ) {
     //collect as lazy paging items will collect values from flow of pagingData and will
@@ -21,10 +20,17 @@ fun HomeScreen(
 
     Scaffold(
         topBar = {
-            HomeTopBar(onSearchClicked = {})
+            HomeTopBar(
+                onSearchClicked = {
+                    navController.navigate(Screen.Search.route)
+                }
+            )
+        },
+        content = {
+            ListContent(
+                heroes = allHeroes,
+                navController = navController
+            )
         }
-    ) {
-        RatingWidget(
-            modifier = Modifier.padding(all = LARGE_PADDING), rating = 3.3)
-    }
+    )
 }
