@@ -22,6 +22,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import anzhy.dizi.ktorapp.R
 import anzhy.dizi.ktorapp.domain.model.Hero
@@ -33,7 +34,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import androidx.paging.compose.items
 import anzhy.dizi.ktorapp.presentation.components.ShimmerEffect
-import anzhy.dizi.ktorapp.presentation.components.handlePagingResult
 import coil.annotation.ExperimentalCoilApi
 
 @ExperimentalCoilApi
@@ -142,6 +142,34 @@ fun HeroItem(
         }
     }
 
+}
+
+
+@Composable
+fun handlePagingResult(
+    heroes: LazyPagingItems<Hero>
+): Boolean {
+    heroes.apply {
+        val error = when {
+            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+            loadState.prepend is LoadState.Error -> loadState.refresh as LoadState.Error
+            loadState.append is LoadState.Error -> loadState.refresh as LoadState.Error
+            else -> null
+        }
+
+        return when {
+            loadState.refresh is LoadState.Loading -> {
+                ShimmerEffect()
+                false
+            }
+            error != null -> {
+                EmptyScreen(error = error)
+                false
+            }
+            else -> true
+
+        }
+    }
 }
 
 @ExperimentalCoilApi

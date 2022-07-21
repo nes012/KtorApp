@@ -29,32 +29,6 @@ fun ShimmerEffect() {
 }
 
 @Composable
-fun handlePagingResult(
-    heroes: LazyPagingItems<Hero>
-): Boolean {
-    heroes.apply {
-        val error = when {
-            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
-            loadState.prepend is LoadState.Error -> loadState.refresh as LoadState.Error
-            loadState.append is LoadState.Error -> loadState.refresh as LoadState.Error
-            else -> null
-        }
-
-        return when {
-            loadState.refresh is LoadState.Loading -> {
-                ShimmerEffect()
-                false
-            }
-            error != null -> {
-                false
-            }
-            else -> true
-
-        }
-    }
-}
-
-@Composable
 fun AnimatedShimmerItem() {
     val transition = rememberInfiniteTransition()
     val alphaAnim = transition.animateFloat(
