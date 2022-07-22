@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
+import androidx.paging.compose.collectAsLazyPagingItems
 
 @Composable
 fun SearchScreen(
@@ -12,15 +13,18 @@ fun SearchScreen(
     searchViewModel: SearchViewModel = hiltViewModel()
 ) {
     val searchQuery by searchViewModel.searchQuery
+    val heroes = searchViewModel.searchHeroes.collectAsLazyPagingItems()
 
     Scaffold(
         topBar = {
             SearchTopBar(
                 text = searchQuery,
                 onTextChange = {
-                               searchViewModel.updateSearchQuery(query = it)
+                    searchViewModel.updateSearchQuery(query = it)
                 },
-                onSearchClicked = {},
+                onSearchClicked = {
+                    searchViewModel.searchHeroes(query = it)
+                },
                 onCloseClicked = {
                     //popBackStack will just remove our search screen from backstack and we're going to see screen which was
                     //behind this screen(Home Screen)

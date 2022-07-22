@@ -3,7 +3,7 @@ package anzhy.dizi.ktorapp.di
 import androidx.paging.ExperimentalPagingApi
 import anzhy.dizi.ktorapp.data.local.AnimeDatabase
 import anzhy.dizi.ktorapp.data.remote.AnimeApi
-import anzhy.dizi.ktorapp.data.repository.RemoteDataSource
+import anzhy.dizi.ktorapp.domain.repository.RemoteDataSource
 import anzhy.dizi.ktorapp.data.repository.RemoteDataSourceImpl
 import anzhy.dizi.ktorapp.util.Constants.BASE_URL
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
@@ -13,9 +13,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.json.Json
-import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import java.util.concurrent.TimeUnit
