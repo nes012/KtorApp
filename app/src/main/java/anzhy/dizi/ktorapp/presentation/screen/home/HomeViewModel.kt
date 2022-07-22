@@ -9,5 +9,6 @@ import javax.inject.Inject
 class HomeViewModel @Inject constructor(
     useCases: UseCases
 ): ViewModel() {
+    //we use cache mediator to cache info to DB
     val getAllHeroes = useCases.getAllHeroesUseCase()
 }

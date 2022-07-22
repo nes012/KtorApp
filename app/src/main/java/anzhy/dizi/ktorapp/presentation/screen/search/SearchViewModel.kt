@@ -30,7 +30,7 @@ class SearchViewModel @Inject constructor(
 
     fun searchHeroes(query: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            //the result will be cached in VM
+            //the result will be cached in VM. In this class we aren't using cache mediator, so we need to collect data in VM.
             useCases.searchHeroesUseCase(query = query).cachedIn(viewModelScope).collect {
                 _searchHeroes.value = it
             }

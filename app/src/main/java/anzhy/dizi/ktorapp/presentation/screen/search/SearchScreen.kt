@@ -6,7 +6,10 @@ import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import androidx.paging.compose.collectAsLazyPagingItems
+import anzhy.dizi.ktorapp.presentation.common.ListContent
+import coil.annotation.ExperimentalCoilApi
 
+@ExperimentalCoilApi
 @Composable
 fun SearchScreen(
     navController: NavHostController,
@@ -31,8 +34,9 @@ fun SearchScreen(
                     navController.popBackStack()
                 }
             )
+        },
+        content = {
+            ListContent(heroes = heroes, navController = navController)
         }
-    ) {
-
-    }
+    )
 }

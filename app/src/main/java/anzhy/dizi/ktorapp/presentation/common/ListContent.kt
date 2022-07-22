@@ -24,17 +24,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import anzhy.dizi.ktorapp.R
 import anzhy.dizi.ktorapp.domain.model.Hero
 import anzhy.dizi.ktorapp.navigation.Screen
 import anzhy.dizi.ktorapp.presentation.components.RatingWidget
+import anzhy.dizi.ktorapp.presentation.components.ShimmerEffect
 import anzhy.dizi.ktorapp.ui.theme.*
 import anzhy.dizi.ktorapp.util.Constants.BASE_URL
+import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import androidx.paging.compose.items
-import anzhy.dizi.ktorapp.presentation.components.ShimmerEffect
-import coil.annotation.ExperimentalCoilApi
 
 @ExperimentalCoilApi
 @Composable
@@ -164,6 +164,10 @@ fun handlePagingResult(
             }
             error != null -> {
                 EmptyScreen(error = error)
+                false
+            }
+            heroes.itemCount < 1 -> {
+                EmptyScreen()
                 false
             }
             else -> true

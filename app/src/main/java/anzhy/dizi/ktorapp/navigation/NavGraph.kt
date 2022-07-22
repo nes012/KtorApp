@@ -11,8 +11,10 @@ import anzhy.dizi.ktorapp.presentation.screen.search.SearchScreen
 import anzhy.dizi.ktorapp.presentation.screen.splash.SplashScreen
 import anzhy.dizi.ktorapp.presentation.screen.welcome.WelcomeScreen
 import anzhy.dizi.ktorapp.util.Constants.DETAILS_ARGUMENT_KEY
+import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalCoilApi
 @ExperimentalPagerApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
