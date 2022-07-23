@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import anzhy.dizi.ktorapp.data.local.AnimeDatabase
+import anzhy.dizi.ktorapp.data.repository.LocalDataSourceImpl
+import anzhy.dizi.ktorapp.domain.repository.LocalDataSource
 import anzhy.dizi.ktorapp.util.Constants.ANIME_DATABASE
 import dagger.Module
 import dagger.Provides
@@ -26,5 +28,15 @@ object DatabaseModule {
             AnimeDatabase::class.java,
             ANIME_DATABASE
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLocalDataSource(
+        database: AnimeDatabase
+    ): LocalDataSource {
+        return LocalDataSourceImpl(
+            animeDatabase = database
+        )
     }
 }

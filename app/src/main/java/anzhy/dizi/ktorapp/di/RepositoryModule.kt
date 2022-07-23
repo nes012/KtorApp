@@ -6,6 +6,7 @@ import anzhy.dizi.ktorapp.data.repository.Repository
 import anzhy.dizi.ktorapp.domain.repository.DataStoreOperations
 import anzhy.dizi.ktorapp.domain.use_cases.UseCases
 import anzhy.dizi.ktorapp.domain.use_cases.get_all_heroes.GetAllHeroesUseCase
+import anzhy.dizi.ktorapp.domain.use_cases.get_selected_hero.GetSelectedHeroUseCase
 import anzhy.dizi.ktorapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import anzhy.dizi.ktorapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import anzhy.dizi.ktorapp.domain.use_cases.search_heroes.SearchHeroesUseCase
@@ -32,7 +33,8 @@ object RepositoryModule {
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
             readOnBoardingUseCase = ReadOnBoardingUseCase(repository),
             getAllHeroesUseCase = GetAllHeroesUseCase(repository),
-            searchHeroesUseCase = SearchHeroesUseCase(repository)
+            searchHeroesUseCase = SearchHeroesUseCase(repository),
+            getSelectedHeroUseCase = GetSelectedHeroUseCase(repository)
         )
     }
 

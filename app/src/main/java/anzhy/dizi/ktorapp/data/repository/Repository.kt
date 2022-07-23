@@ -3,11 +3,13 @@ package anzhy.dizi.ktorapp.data.repository
 import androidx.paging.PagingData
 import anzhy.dizi.ktorapp.domain.model.Hero
 import anzhy.dizi.ktorapp.domain.repository.DataStoreOperations
+import anzhy.dizi.ktorapp.domain.repository.LocalDataSource
 import anzhy.dizi.ktorapp.domain.repository.RemoteDataSource
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class Repository @Inject constructor(
+    private val localDataSource: LocalDataSource,
     private val remote: RemoteDataSource,
     private val dataStore: DataStoreOperations
 ) {
@@ -26,5 +28,9 @@ class Repository @Inject constructor(
 
     fun readOnBoardingState(): Flow<Boolean> {
         return dataStore.readOnBoardingState()
+    }
+
+    suspend fun getSelectedHero(heroId: Int): Hero {
+        return localDataSource.getSelectedHero(heroId)
     }
 }
