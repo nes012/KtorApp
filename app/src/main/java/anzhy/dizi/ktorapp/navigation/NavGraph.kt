@@ -1,5 +1,6 @@
 package anzhy.dizi.ktorapp.navigation
 
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -15,6 +16,7 @@ import anzhy.dizi.ktorapp.util.Constants.DETAILS_ARGUMENT_KEY
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 
+@ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalPagerApi
 @Composable
