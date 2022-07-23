@@ -6,6 +6,7 @@ import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
+import anzhy.dizi.ktorapp.presentation.details.DetailsScreen
 import anzhy.dizi.ktorapp.presentation.screen.home.HomeScreen
 import anzhy.dizi.ktorapp.presentation.screen.search.SearchScreen
 import anzhy.dizi.ktorapp.presentation.screen.splash.SplashScreen
@@ -37,7 +38,7 @@ fun SetupNavGraph(navController: NavHostController) {
                 type = NavType.IntType
             })
         ) {
-
+            DetailsScreen(navController = navController)
         }
         composable(route = Screen.Search.route) {
             SearchScreen(navController = navController)

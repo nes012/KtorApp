@@ -105,4 +105,7 @@ dependencies {
     // Coil
     implementation("io.coil-kt:coil-compose:2.0.0")
 
+    // Swipe to Refresh - Accompanist
+    implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
+
 }
