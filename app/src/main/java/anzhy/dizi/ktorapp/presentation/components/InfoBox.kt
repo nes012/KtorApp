@@ -35,7 +35,7 @@ fun InfoBox(
         Icon(
             modifier = Modifier
                 .padding(end = SMALL_PADDING)
-                .size(INFO_ICON_SIZE),gia
+                .size(INFO_ICON_SIZE),
             painter = icon,
             contentDescription = stringResource(R.string.info_icon),
             tint = iconColor
