@@ -108,4 +108,6 @@ dependencies {
     // Swipe to Refresh - Accompanist
     implementation "com.google.accompanist:accompanist-swiperefresh:$accompanist_version"
 
+    // Palette API
+    implementation "androidx.palette:palette-ktx:1.0.0"
 }

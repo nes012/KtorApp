@@ -23,7 +23,6 @@ class DetailsViewModel @Inject constructor(
     private val _selectedHero: MutableStateFlow<Hero?> = MutableStateFlow(null)
     val selectedHero: StateFlow<Hero?> = _selectedHero
 
-
     //this code will execute immediately
     init {
         //Dispatchers.IO - because we're going to read from DB
