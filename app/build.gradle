@@ -110,4 +110,8 @@ dependencies {
 
     // Palette API
     implementation "androidx.palette:palette-ktx:1.0.0"
+
+    // System Ui Controller - Accompanist
+    implementation "com.google.accompanist:accompanist-systemuicontroller:0.17.0"
+
 }
