@@ -1,6 +1,5 @@
 package anzhy.dizi.ktorapp.data.paging_source
 
-import android.util.Log
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -10,8 +9,6 @@ import anzhy.dizi.ktorapp.data.local.AnimeDatabase
 import anzhy.dizi.ktorapp.data.remote.AnimeApi
 import anzhy.dizi.ktorapp.domain.model.Hero
 import anzhy.dizi.ktorapp.domain.model.HeroRemoteKeys
-import java.text.SimpleDateFormat
-import java.util.*
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
