@@ -11,7 +11,7 @@ import anzhy.dizi.ktorapp.domain.model.Hero
 import anzhy.dizi.ktorapp.domain.model.HeroRemoteKeys
 import javax.inject.Inject
 
-@OptIn(ExperimentalPagingApi::class)
+@ExperimentalPagingApi
 class HeroRemoteMediator @Inject constructor(
     private val animeApi: AnimeApi,
     private val animeDatabase: AnimeDatabase
