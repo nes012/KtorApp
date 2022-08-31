@@ -91,7 +91,7 @@ fun SearchWidget(
                 IconButton(
                     modifier = Modifier
                         .semantics {
-                            contentDescription = "CloseIcon"
+                            contentDescription = "CloseButton"
                         },
                     onClick = {
                         if (text.isNotEmpty()) {
