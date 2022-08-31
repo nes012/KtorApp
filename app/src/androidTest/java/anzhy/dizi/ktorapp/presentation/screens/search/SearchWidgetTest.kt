@@ -1,7 +1,6 @@
 package anzhy.dizi.ktorapp.presentation.screens.search
 
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
