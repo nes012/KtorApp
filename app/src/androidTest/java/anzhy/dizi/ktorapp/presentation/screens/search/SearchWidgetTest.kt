@@ -54,4 +54,51 @@ class SearchWidgetTest {
             .assertTextContains("")
     }
 
+    @Test
+    fun openSearchWidget_addInputText_pressCloseButtonTwice_assertClosedState() {
+        val text = mutableStateOf("")
+        val searchWidgetShown = mutableStateOf(true)
+        composeTestRule.setContent {
+            if(searchWidgetShown.value) {
+                SearchWidget(
+                    text = text.value,
+                    onTextChange = {
+                        text.value = it
+                    },
+                    onCloseClicked = {searchWidgetShown.value = false},
+                    onSearchClicked = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithContentDescription("TextField")
+            .performTextInput("Anzhyk")
+        composeTestRule.onNodeWithContentDescription("CloseButton")
+            .performClick()
+        composeTestRule.onNodeWithContentDescription("CloseButton")
+            .performClick()
+        composeTestRule.onNodeWithContentDescription("SearchWidget")
+            .assertDoesNotExist()
+    }
+
+    @Test
+    fun openSearchWidget_pressCloseButtonOnceWhenInputIsEmpty_assertClosedState() {
+        val text = mutableStateOf("")
+        val searchWidgetShown = mutableStateOf(true)
+        composeTestRule.setContent {
+            if(searchWidgetShown.value) {
+                SearchWidget(
+                    text = text.value,
+                    onTextChange = {
+                        text.value = it
+                    },
+                    onCloseClicked = {searchWidgetShown.value = false},
+                    onSearchClicked = {}
+                )
+            }
+        }
+        composeTestRule.onNodeWithContentDescription("CloseButton")
+            .performClick()
+        composeTestRule.onNodeWithContentDescription("SearchWidget")
+            .assertDoesNotExist()
+    }
 }
